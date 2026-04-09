@@ -1,0 +1,855 @@
+[
+  {
+    "id": "TC001",
+    "title": "Admin can log in and be routed to admin dashboard",
+    "description": "Verifies that a user with admin role can log in successfully and is automatically redirected to the admin dashboard.",
+    "category": "User Login",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user lands on the admin dashboard"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Viewer can log in and be routed to viewer dashboard",
+    "description": "Verifies that a user with viewer role can log in successfully and is automatically redirected to the viewer dashboard.",
+    "category": "User Login",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user lands on the viewer dashboard"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Logout from admin clears session and returns to login",
+    "description": "Verifies logging out from the admin portal returns to the login page and the admin page is no longer accessible without logging in again.",
+    "category": "Logout",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Trigger logout"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user is redirected to the login page"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Unauthenticated user is blocked from admin dashboard",
+    "description": "Verifies that navigating directly to the admin dashboard without a stored auth session redirects to the login page.",
+    "category": "Auth Guard / Role-Based Redirect",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user is redirected to the login page"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Unauthenticated user is blocked from viewer dashboard",
+    "description": "Verifies that navigating directly to the viewer dashboard without a stored auth session redirects to the login page.",
+    "category": "Auth Guard / Role-Based Redirect",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /viewer.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user is redirected to the login page"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Admin can manage a product end-to-end (add, edit, delete) with count updates",
+    "description": "Verifies an admin can add a product, edit it, then delete it and the product list and total count reflect each change.",
+    "category": "Admin Product Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Open the add product modal"
+      },
+      {
+        "type": "action",
+        "description": "Fill Unique Product A into the product name field"
+      },
+      {
+        "type": "action",
+        "description": "Save the product"
+      },
+      {
+        "type": "action",
+        "description": "Open the edit product modal for Unique Product A"
+      },
+      {
+        "type": "action",
+        "description": "Fill Unique Product A Updated into the product name field"
+      },
+      {
+        "type": "action",
+        "description": "Save the changes"
+      },
+      {
+        "type": "action",
+        "description": "Initiate delete for Unique Product A Updated"
+      },
+      {
+        "type": "action",
+        "description": "Confirm deletion"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the product is no longer present in the product list and the total product count reflects the removal"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Already-authenticated admin is redirected away from login page",
+    "description": "Verifies that an authenticated admin visiting the login page is automatically routed to the admin dashboard.",
+    "category": "Auth Guard / Role-Based Redirect",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user lands on the admin dashboard"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC008",
+    "title": "Admin can view catalogue list and total count on load",
+    "description": "Verifies the admin products page loads a product table and shows a total product count.",
+    "category": "Admin Product Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the product list is displayed in a data table"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a total product count is displayed in a stats card"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC009",
+    "title": "Viewer can browse catalogue with total count on load",
+    "description": "Verifies a viewer can open the dashboard and see a read-only product table and total product count.",
+    "category": "Viewer Product Dashboard",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the viewer product list is displayed in a data table"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a total product count is displayed in a stats card"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC010",
+    "title": "Admin role is blocked from viewer dashboard",
+    "description": "Verifies that an authenticated admin cannot access the viewer dashboard and is redirected to the login page per current guard behavior.",
+    "category": "Auth Guard / Role-Based Redirect",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /viewer.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user is redirected to the login page"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC011",
+    "title": "Viewer read-only table has no row actions",
+    "description": "Verifies the viewer dashboard does not expose edit/delete actions in the product table.",
+    "category": "Viewer Product Dashboard",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the product table does not include controls for editing or deleting items"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC012",
+    "title": "New user can register as Viewer and return to login",
+    "description": "Verifies that a new user can register with viewer role and is redirected back to the login page on success.",
+    "category": "User Registration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /register.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill Test Viewer into the full name field"
+      },
+      {
+        "type": "action",
+        "description": "Fill test_viewer_user into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Select the Viewer role"
+      },
+      {
+        "type": "action",
+        "description": "Fill test_viewer_pass into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the registration form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user lands on the login page"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC013",
+    "title": "Admin search filters product list and updates stats",
+    "description": "Verifies an admin can search the catalogue and see filtered results with an updated total count.",
+    "category": "Admin Product Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid keyword from an existing product into the search field"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the product list is filtered to matching items"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the total product count reflects the filtered results"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC014",
+    "title": "Admin can clear search to restore full list and count",
+    "description": "Verifies clearing the search query restores the full product list and total count.",
+    "category": "Admin Product Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid keyword from an existing product into the search field"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "action",
+        "description": "Clear the search field"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the full product list is displayed again"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the total product count reflects the full catalogue"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC015",
+    "title": "Invalid login shows global error banner",
+    "description": "Verifies that incorrect credentials prevent login and show a global invalid-credentials error state.",
+    "category": "User Login",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill invalid_user into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill invalid_password into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a global login error banner is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC016",
+    "title": "Admin can cancel deletion and item remains",
+    "description": "Verifies canceling the delete confirmation leaves the product in the list and does not change the total count.",
+    "category": "Admin Product Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Open the add product modal"
+      },
+      {
+        "type": "action",
+        "description": "Fill Cancel Delete Product into the product name field"
+      },
+      {
+        "type": "action",
+        "description": "Save the product"
+      },
+      {
+        "type": "action",
+        "description": "Initiate delete for Cancel Delete Product"
+      },
+      {
+        "type": "action",
+        "description": "Cancel deletion"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the product is still present in the product list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the total product count did not decrease after canceling"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC017",
+    "title": "Login required-field validation blocks submission",
+    "description": "Verifies that submitting the login form with missing required fields shows inline validation errors and does not proceed to a dashboard.",
+    "category": "User Login",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify inline required-field validation errors are visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC018",
+    "title": "Admin sees a stable no-results state for unmatched search",
+    "description": "Verifies an admin searching for a non-matching keyword shows a no-results state without breaking the table or stats UI.",
+    "category": "Admin Product Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Fill a unique gibberish query into the search field"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a no-results state is shown for the product list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the page remains usable with the stats card still displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC019",
+    "title": "Admin validation prevents saving an incomplete product",
+    "description": "Verifies the add product form blocks saving when required fields are missing and shows a validation error.",
+    "category": "Admin Product Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Open the add product modal"
+      },
+      {
+        "type": "action",
+        "description": "Fill Incomplete Product into the product name field"
+      },
+      {
+        "type": "action",
+        "description": "Save the product"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a product form validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no new product is added to the product list"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC020",
+    "title": "Registration requires role selection",
+    "description": "Verifies that registration cannot be submitted without choosing a role and shows an inline role-required error.",
+    "category": "User Registration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /register.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill No Role User into the full name field"
+      },
+      {
+        "type": "action",
+        "description": "Fill no_role_user into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill any_password into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the registration form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an inline role-required validation error is visible"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC021",
+    "title": "Registration enforces username minimum length",
+    "description": "Verifies that a too-short username is rejected with an inline validation error during registration.",
+    "category": "User Registration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /register.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill Short Name into the full name field"
+      },
+      {
+        "type": "action",
+        "description": "Fill ab into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Select the Viewer role"
+      },
+      {
+        "type": "action",
+        "description": "Fill any_password into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the registration form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an inline username length validation error is visible"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC022",
+    "title": "Admin pagination controls update the visible table slice",
+    "description": "Verifies an admin can change pages using pagination controls and the visible product rows update accordingly.",
+    "category": "Admin Product Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click a different pagination page control"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the product table updates to show a different set of rows"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC023",
+    "title": "Password visibility can be toggled on login",
+    "description": "Verifies that toggling password visibility on the login form changes the password field between masked and unmasked states.",
+    "category": "User Login",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill any_password into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Toggle password visibility"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the password field is displayed as unmasked text"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC024",
+    "title": "Viewer can read informational cards by scrolling",
+    "description": "Verifies the viewer can scroll to and see the informational cards content area.",
+    "category": "Viewer Product Dashboard",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the informational cards section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify informational cards are displayed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC025",
+    "title": "Password visibility can be toggled on registration",
+    "description": "Verifies that toggling password visibility on the registration form changes the password field between masked and unmasked states.",
+    "category": "User Registration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /register.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill any_password into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Toggle password visibility"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the password field is displayed as unmasked text"
+      }
+    ],
+    "priority": "Low"
+  }
+]

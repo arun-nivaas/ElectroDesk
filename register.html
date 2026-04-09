@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Proton Enterprise</title>
+  
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Left Branding Panel -->
+    <div class="panel-left">
+      <div class="brand-header">Proton Enterprise</div>
+      
+      <h1 class="brand-title">Manage Your Electrical Inventory</h1>
+      
+      <p class="brand-description">
+        Streamline your small electrical shop. Effortlessly track your stock of LED bulbs, PVC fittings, wires, and essential supplies with our professional inventory tools.
+      </p>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        </div>
+        <div class="feature-text">
+          <h4>Stock Tracking</h4>
+          <p>Real-time monitoring of bulbs, wires, and fittings.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Registration Panel -->
+    <div class="panel-right">
+      <div class="auth-wrapper">
+        
+        <div class="auth-header">
+          <h2 class="auth-title">Create Account</h2>
+          <p class="auth-subtitle">Access the enterprise dashboard for electrical monitoring.</p>
+        </div>
+
+        <form id="register-form" novalidate>
+          
+          <div class="form-group">
+            <label class="form-label" for="full_name">Full Name</label>
+            <div class="input-wrapper">
+              <input type="text" id="full_name" name="full_name" class="input-field" style="padding-left: 1rem;" placeholder="Enter your full name" required>
+            </div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="username">Username</label>
+            <div class="input-wrapper">
+              <input type="text" id="username" name="username" class="input-field" style="padding-left: 1rem;" placeholder="Choose a unique username" required>
+            </div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Account Role</label>
+            <div class="role-selector">
+              <label class="role-option">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <span>Admin</span>
+                <input type="radio" name="role" value="admin">
+              </label>
+              <label class="role-option selected">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <span>Viewer</span>
+                <input type="radio" name="role" value="viewer" checked>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <div class="input-wrapper">
+              <input type="password" id="password" name="password" class="input-field" style="padding-left: 1rem;" placeholder="••••••••" required>
+              <button type="button" class="input-action toggle-password" aria-label="Toggle password visibility">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              </button>
+            </div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="form-group mt-5">
+            <button type="submit" class="btn btn-primary">
+              <span class="btn-text">Register</span>
+              <span class="spinner"></span>
+            </button>
+          </div>
+
+        </form>
+
+        <div class="auth-footer">
+          Already have an account? <a href="index.html">Sign In</a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/ui.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

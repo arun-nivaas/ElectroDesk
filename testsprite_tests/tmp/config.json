@@ -1,0 +1,20 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:5173/index.html",
+  "loginUser": "DAD",
+  "loginPassword": "dad123",
+  "executionArgs": {
+    "projectName": "Shop-price",
+    "projectPath": "a:\\Data Science\\Shop-price",
+    "testIds": [],
+    "additionalInstruction": "This is a vanilla HTML/CSS/JS frontend served via `npx serve` on port 5173. The backend API runs on http://127.0.0.1:8001/api/v1. The app uses localStorage for auth (auth_token, auth_role). Login page is at /index.html. Admin dashboard at /admin.html requires role=admin. Viewer dashboard at /viewer.html requires role=viewer. Test auth flow, CRUD operations, search, and role-based access control.",
+    "serverMode": "development",
+    "envs": {
+      "API_KEY": "sk-user-k8N2IP8ANYK8dsJXNNnVNJLWOPzwfu4EKLHnr-YAPpKTt2TO1ELCKh_jHGU6JvxzsR5BsWXfHstqjUpQCbLyd4Qmsof0M6iNEknyLxt5h1pJSk9njC2PZM-UYsNJVHVvn68"
+    }
+  },
+  "serverPort": 58557,
+  "proxy": "http://8caf3a2c-d11e-443a-934b-c5a86adb8d77:recYUc0TX1EWTL4OIDL0oEMDhGa8LVkS@tun.testsprite.com:8080"
+}

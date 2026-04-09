@@ -1,0 +1,168 @@
+version: "2"
+type: frontend
+tech_stack:
+  - language: HTML/CSS/Vanilla JavaScript
+  - framework: None (plain static HTML)
+  - ui_library: None
+  - other: Inter (Google Fonts), FastAPI backend (http://127.0.0.1:8001/api/v1)
+
+routes:
+  - path: /index.html
+    file: index.html
+    auth_required: false
+    description: Login page for Proton Enterprise - accepts username and password credentials
+  - path: /register.html
+    file: register.html
+    auth_required: false
+    description: User registration page - create account with role selection (Admin/Viewer)
+  - path: /admin.html
+    file: admin.html
+    auth_required: true
+    description: Admin Products Portal - full CRUD management of electrical inventory products
+  - path: /viewer.html
+    file: viewer.html
+    auth_required: true
+    description: Read-only Viewer Dashboard - displays electrical inventory products with search
+
+features:
+  - name: User Login
+    description: Login with username and password credentials; JWT token and role stored in localStorage; redirects to admin or viewer dashboard based on role
+    files:
+      - index.html
+      - js/auth.js
+      - js/api.js
+      - js/ui.js
+      - js/validation.js
+      - js/app.js
+    entry_route: /index.html
+    user_interactions:
+      - Fill username input field
+      - Fill password input field
+      - Toggle password visibility via eye button
+      - Click "Login to Terminal" button to submit
+      - See inline error messages on empty fields
+      - See global error banner on invalid credentials
+      - See success banner and auto-redirect on successful login
+    api_calls:
+      - method: POST
+        endpoint: /api/v1/auth/login
+    auth_required: false
+
+  - name: User Registration
+    description: Create a new account with full name, username, password and role (admin or viewer); redirects to login on success
+    files:
+      - register.html
+      - js/auth.js
+      - js/api.js
+      - js/ui.js
+      - js/validation.js
+      - js/app.js
+    entry_route: /register.html
+    user_interactions:
+      - Fill full name input
+      - Fill username input
+      - Select role (Admin or Viewer) via radio buttons
+      - Fill password input
+      - Toggle password visibility
+      - Click "Register" button to submit
+      - See inline validation errors
+      - See success or error alert banner
+    api_calls:
+      - method: POST
+        endpoint: /api/v1/auth/register
+    auth_required: false
+
+  - name: Auth Guard / Role-Based Redirect
+    description: Protects admin.html and viewer.html from unauthenticated access; redirects based on stored role; already-logged-in users skip auth pages
+    files:
+      - js/authGuard.js
+    entry_route: /index.html
+    user_interactions:
+      - Navigate to admin.html without token - redirected to index.html
+      - Navigate to viewer.html without token - redirected to index.html
+      - Navigate to index.html already logged in - auto-redirected to role dashboard
+    api_calls: []
+    auth_required: false
+
+  - name: Admin Product Management
+    description: Full CRUD (Create, Read, Update, Delete) for electrical inventory products with search, pagination, and stats card
+    files:
+      - admin.html
+      - js/product.js
+      - js/ui.js
+      - js/api.js
+      - js/app.js
+      - js/authGuard.js
+    entry_route: /admin.html
+    user_interactions:
+      - View product list in a data table with columns Name, Brand, Category, Unit, Price, Actions
+      - See total product count in stats card
+      - Search products using the search input in topbar
+      - Click "Add Product" or "+ Add New Item" button to open Add Product modal
+      - Fill product form (name, brand, specification, price, unit, category) and click Save Product
+      - Click Edit button on a product row to open Edit Product modal with pre-filled data
+      - Update product details and save
+      - Click Delete button on a product row to open Delete Confirmation modal
+      - Confirm deletion by clicking "Delete Item"
+      - Cancel deletion by clicking "Cancel"
+      - Click Logout button in sidebar or topbar to log out and return to login page
+    api_calls:
+      - method: GET
+        endpoint: /api/v1/products/
+      - method: GET
+        endpoint: /api/v1/products/?search={query}
+      - method: POST
+        endpoint: /api/v1/products/
+      - method: PUT
+        endpoint: /api/v1/products/{id}
+      - method: DELETE
+        endpoint: /api/v1/products/{id}
+    auth_required: true
+
+  - name: Viewer Product Dashboard
+    description: Read-only view of the electrical inventory product list with search, pagination, and informational cards
+    files:
+      - viewer.html
+      - js/product.js
+      - js/ui.js
+      - js/api.js
+      - js/app.js
+      - js/authGuard.js
+    entry_route: /viewer.html
+    user_interactions:
+      - View product list in a data table with columns Name, Brand, Category, Unit, Price (no Actions column)
+      - See total product count in stats card
+      - Search products using the search input in topbar
+      - Click Logout button in sidebar or topbar to log out and return to login page
+    api_calls:
+      - method: GET
+        endpoint: /api/v1/products/
+      - method: GET
+        endpoint: /api/v1/products/?search={query}
+    auth_required: true
+
+  - name: Logout
+    description: Clears auth_token and auth_role from localStorage and redirects to index.html login page
+    files:
+      - js/authGuard.js
+      - js/app.js
+    entry_route: /admin.html
+    user_interactions:
+      - Click Logout button in sidebar
+      - Click Logout icon button in topbar
+    api_calls: []
+    auth_required: true
+
+known_limitations:
+  - issue: Pagination controls in admin.html and viewer.html are static HTML placeholders; no JS wires up dynamic page navigation
+    location: admin.html, viewer.html
+    impact: Clicking pagination buttons may not navigate between pages if backend returns full list
+  - issue: Export List and Export CSV buttons have no implementation
+    location: admin.html, viewer.html
+    impact: Clicking export buttons does nothing
+  - issue: The authGuard role check for viewer page redirects any non-viewer role back to login instead of admin page; admins cannot visit viewer.html
+    location: js/authGuard.js
+    impact: Admins are locked out of viewer dashboard
+  - issue: password toggle button in login/register may not update icon state visually
+    location: index.html, register.html, js/ui.js
+    impact: Minor UX inconsistency
